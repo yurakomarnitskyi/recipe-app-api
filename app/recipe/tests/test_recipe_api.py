@@ -17,7 +17,7 @@ from core.models import (
 )
 
 from recipe.serializers import (
-    RecipeSerializers,
+    RecipeSerializer,
     RecipeDetailSerializer,
 )
 
@@ -80,7 +80,7 @@ class PrivateReciperAPiTests(TestCase):
         res = self.client.get(RECIPES_URL)
 
         recipes = Recipe.objects.all().order_by('-id')
-        serializer = RecipeSerializers(recipes, many=True)
+        serializer = RecipeSerializer(recipes, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
 
@@ -92,7 +92,7 @@ class PrivateReciperAPiTests(TestCase):
 
         res = self.client.get(RECIPES_URL)
         recipe = Recipe.objects.filter(user=self.user)
-        serializer = RecipeSerializers(recipe, many=True)
+        serializer = RecipeSerializer(recipe, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
 
@@ -290,7 +290,7 @@ class PrivateReciperAPiTests(TestCase):
             'title': 'Cauliflower Tacos',
             'time_minutes': 60,
             'price': Decimal('4.30'),
-            'ingedients': [{'name': 'Cauliflower'}, {'name': 'Salt'}]
+            'ingredients': [{'name': 'Cauliflower'}, {'name': 'Salt'}]
         }
         res = self.client.post(RECIPES_URL, payload, format='json')
 
@@ -299,7 +299,7 @@ class PrivateReciperAPiTests(TestCase):
         self.assertEqual(recipes.count(), 1)
         recipe = recipes[0]
         self.assertEqual(recipe.ingredients.count(), 2)
-        for ingredient in payload['ingedients']:
+        for ingredient in payload['ingredients']:
             exists = recipe.ingredients.filter(
                 name=ingredient['name'],
                 user=self.user,
@@ -310,10 +310,10 @@ class PrivateReciperAPiTests(TestCase):
         """Test creating a new recipe with existing ingredients."""
         ingredient = Ingredient.objects.create(user=self.user, name='Lemon')
         payload = {
-            'title': 'Cauliflower Tacos',
+            'title': 'Vietnamese Soup',
             'time_minutes': 25,
-            'price': Decimal('2.55'),
-            'ingedients': [{'name': 'Lemon'}, {'name': 'Fish Sauce'}]
+            'price': '2.55',
+            'ingredients': [{'name': 'Lemon'}, {'name': 'Fish Sauce'}]
         }
         res = self.client.post(RECIPES_URL, payload, format='json')
 
@@ -323,7 +323,7 @@ class PrivateReciperAPiTests(TestCase):
         recipe = recipes[0]
         self.assertEqual(recipe.ingredients.count(), 2)
         self.assertIn(ingredient, recipe.ingredients.all())
-        for ingredient in payload['ingedients']:
+        for ingredient in payload['ingredients']:
             exists = recipe.ingredients.filter(
                 name=ingredient['name'],
                 user=self.user,

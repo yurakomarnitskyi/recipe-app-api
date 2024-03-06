@@ -9,7 +9,7 @@ The project presents an API where Token authorization is implemented, the user c
 
 Python, Django, Django Rest Framework, PostgreSQL, Test Drive Development, AWS
 
-### Use the following commands to run docker-compose on your computer or if you want run AWS server open deploment.md file:
+### Use the following commands to run docker-compose on your computer or if you want run AWS server open deployment.md file:
 
 ```sh
 docekr-compose up

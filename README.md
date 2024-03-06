@@ -12,7 +12,7 @@ Python, Django, Django Rest Framework, PostgreSQL, Test Drive Development, AWS
 ### Use the following commands to run docker-compose on your computer or if you want run AWS server open deployment.md file:
 
 ```sh
-docekr-compose up
+docker-compose up
 ```
 
 ### Run test and flake8

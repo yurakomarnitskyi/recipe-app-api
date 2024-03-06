@@ -1,4 +1,4 @@
-# RESTAPi project
+# REST API project
 
 
 ## Opportunities 

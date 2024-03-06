@@ -3,7 +3,7 @@
 
 ## Opportunities 
 
-The project presents an API where Token authorization is implemented, the user can create a world recipe with ingredients, tags, and you can also upload photos to them. This REST API uses CRUD operations.
+The project presents an API where Token authorization is implemented, the user can create a recipe with ingredients, tags, and you can also upload photos to them. This REST API uses CRUD operations.
 
 ### Technology
 

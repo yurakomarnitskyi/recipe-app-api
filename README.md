@@ -7,7 +7,7 @@ The project presents an API where Token authorization is implemented, the user c
 
 ### Technology
 
-Python, Django, Django Rest Framework, PostgreSQL, Test Drive Development, AWS
+Python, Django, Django Rest Framework, PostgreSQL, Test Drive Development, AWS, Docker, Nginx
 
 ### Use the following commands to run docker-compose on your computer or if you want run AWS server open deployment.md file:
 
